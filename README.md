@@ -47,13 +47,13 @@ docker-compose exec db mysql -u laraveluser -p contact_manager
 ```
 
 ## 📁 Estructura del Proyecto
-contact-manager-laravel/
-├── docker-compose.yml
-├── nginx/
-├── mysql/
-├── php/
-├── src/                 # Código Laravel
-└── README.md
+contact-manager-laravel/ 
+├── docker-compose.yml 
+├── nginx/ 
+├── mysql/ 
+├── php/ 
+├── src/                 # Código Laravel 
+└── README.md 
 
 ## 📝 Licencia
 MIT
