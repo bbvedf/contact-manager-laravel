@@ -10,6 +10,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <!-- Livewire Styles -->
     @livewireStyles
+    <!-- Estilos personalizados -->
+    <style>
+        .bg-purple {
+            background-color: #6f42c1 !important;
+            color: white !important;
+        }
+        .badge {
+            color: white !important;
+        }
+        .bg-warning {
+            color: black !important;
+        }
+    </style>
+
 </head>
 
 <body>
