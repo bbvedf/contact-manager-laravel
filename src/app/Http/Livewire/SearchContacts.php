@@ -12,6 +12,7 @@ class SearchContacts extends Component
 {
     public $search = '';
     public $category = '';
+    public $viewMode = 'cards'; // 'cards' o 'list'
 
     public function render()
     {
@@ -143,6 +144,7 @@ private function getFilteredContacts()
         ->orderBy('name')
         ->get();
 }
+
 
 
 }
