@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // AGREGAR ESTA LÍNEA - Registrar componente Livewire manualmente
+        Livewire::component('search-contacts', \App\Http\Livewire\SearchContacts::class);
     }
 }

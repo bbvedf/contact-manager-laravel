@@ -9,11 +9,6 @@ class Contact extends Model
 {
     use HasFactory;
 
-    /**
-     * Los atributos que son asignables en masa.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
@@ -22,11 +17,6 @@ class Contact extends Model
         'notes',
     ];
 
-    /**
-     * Valores por defecto para los atributos
-     *
-     * @var array
-     */
     protected $attributes = [
         'category' => 'personal',
     ];
@@ -36,9 +26,9 @@ class Contact extends Model
      */
     public const CATEGORIES = [
         'personal' => 'Personal',
-        'family' => 'Familia',
-        'work' => 'Trabajo',
-        'friends' => 'Amigos',
-        'other' => 'Otro',
+        'familia' => 'Familia',
+        'trabajo' => 'Trabajo', 
+        'amigos' => 'Amigos',
+        'otro' => 'Otro',
     ];
 }

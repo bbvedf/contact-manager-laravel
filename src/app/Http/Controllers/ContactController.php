@@ -33,7 +33,7 @@ class ContactController extends Controller
             'name' => 'required|string|max:100',
             'email' => 'nullable|email|max:100',
             'phone' => 'nullable|string|max:20',
-            'category' => 'required|string|in:personal,family,work,friends,other',
+            'category' => 'required|string|in:personal,familia,trabajo,amigos,otro',
             'notes' => 'nullable|string|max:500',
         ]);
 
@@ -68,7 +68,7 @@ class ContactController extends Controller
             'name' => 'required|string|max:100',
             'email' => 'nullable|email|max:100',
             'phone' => 'nullable|string|max:20',
-            'category' => 'required|string|in:personal,family,work,friends,other',
+            'category' => 'required|string|in:personal,familia,trabajo,amigos,otro',
             'notes' => 'nullable|string|max:500',
         ]);
 

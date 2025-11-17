@@ -52,11 +52,11 @@
                         <select class="form-select @error('category') is-invalid @enderror" 
                                 id="category" name="category" required>
                             <option value="">Seleccionar categoría...</option>
-                            <option value="personal" {{ old('category') == 'personal' ? 'selected' : '' }}>Personal</option>
-                            <option value="family" {{ old('category') == 'family' ? 'selected' : '' }}>Familia</option>
-                            <option value="work" {{ old('category') == 'work' ? 'selected' : '' }}>Trabajo</option>
-                            <option value="friends" {{ old('category') == 'friends' ? 'selected' : '' }}>Amigos</option>
-                            <option value="other" {{ old('category') == 'other' ? 'selected' : '' }}>Otro</option>
+                            <option value="personal" {{ old('category', isset($contact) ? $contact->category : '') == 'personal' ? 'selected' : '' }}>Personal</option>
+                            <option value="familia" {{ old('category', isset($contact) ? $contact->category : '') == 'familia' ? 'selected' : '' }}>Familia</option>
+                            <option value="trabajo" {{ old('category', isset($contact) ? $contact->category : '') == 'trabajo' ? 'selected' : '' }}>Trabajo</option>
+                            <option value="amigos" {{ old('category', isset($contact) ? $contact->category : '') == 'amigos' ? 'selected' : '' }}>Amigos</option>
+                            <option value="otro" {{ old('category', isset($contact) ? $contact->category : '') == 'otro' ? 'selected' : '' }}>Otro</option>
                         </select>
                         @error('category')
                             <div class="invalid-feedback">{{ $message }}</div>
