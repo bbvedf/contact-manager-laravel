@@ -138,18 +138,18 @@
                             @endif
                         </div>
                         <div class="card-footer bg-transparent">
-                            <div class="btn-group btn-group-sm" role="group">
-                                <a href="{{ route('contacts.show', $contact) }}" class="btn btn-outline-primary">
+                            <div class="btn-group btn-group-sm w-100" role="group">
+                                <a href="{{ route('contacts.show', $contact) }}" class="btn btn-outline-primary rounded-0 rounded-start">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-outline-secondary">
+                                <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-outline-secondary rounded-0">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <form action="{{ route('contacts.destroy', $contact) }}" method="POST" class="d-inline">
+                                <form action="{{ route('contacts.destroy', $contact) }}" method="POST" class="d-inline flex-fill">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger" 
-                                        onclick="return confirm('¿Eliminar este contacto?')">
+                                    <button type="submit" class="btn btn-outline-danger w-100 rounded-0 rounded-end" 
+                                            onclick="return confirm('¿Eliminar este contacto?')">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
@@ -199,17 +199,17 @@
                                 </div>
                                 <div class="col-md-2 text-end">
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <a href="{{ route('contacts.show', $contact) }}" class="btn btn-outline-primary">
+                                        <a href="{{ route('contacts.show', $contact) }}" class="btn btn-outline-primary rounded-0 rounded-start">
                                             <i class="bi bi-eye"></i>
                                         </a>
-                                        <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-outline-secondary">
+                                        <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-outline-secondary rounded-0">
                                             <i class="bi bi-pencil"></i>
                                         </a>
                                         <form action="{{ route('contacts.destroy', $contact) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger" 
-                                                onclick="return confirm('¿Eliminar este contacto?')">
+                                            <button type="submit" class="btn btn-outline-danger rounded-0 rounded-end" 
+                                                    onclick="return confirm('¿Eliminar este contacto?')">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </form>

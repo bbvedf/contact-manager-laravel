@@ -1,0 +1,153 @@
+/* Tema claro por defecto */
+:root {
+    --color-bg: #ffffff;
+    --color-text: #000000;
+    --color-card-bg: #ffffff;
+    --color-card-border: #dee2e6;
+    --color-input-bg: #ffffff;
+    --color-input-text: #000000;
+    --color-input-border: #ced4da;
+    --color-muted: #6c757d;
+    --color-list-item: #ffffff;
+    --color-list-item-hover: #f8f9fa;
+    --color-list-border: #dee2e6;
+}
+
+/* Tema oscuro */
+[data-bs-theme="dark"] {
+    --color-bg: #1a1d20;
+    --color-text: #e9ecef;
+    --color-card-bg: #2b3035;
+    --color-card-border: #373b3e;
+    --color-input-bg: #374151;
+    --color-input-text: #e5e7eb;
+    --color-input-border: #4b5563;
+    --color-muted: #9ca3af;
+    --color-list-item: #2b3035;
+    --color-list-item-hover: #32383e;
+    --color-list-border: #373b3e;
+}
+
+/* Aplicar variables CSS */
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card {
+    background-color: var(--color-card-bg);
+    border-color: var(--color-card-border);
+    color: var(--color-text);
+}
+
+.card-header {
+    background-color: var(--color-card-bg);
+    border-color: var(--color-card-border);
+}
+
+.list-group-item {
+    background-color: var(--color-list-item);
+    border-color: var(--color-list-border);
+    color: var(--color-text);
+}
+
+.list-group-item:hover {
+    background-color: var(--color-list-item-hover);
+}
+
+.form-control, .form-select {
+    background-color: var(--color-input-bg);
+    border-color: var(--color-input-border);
+    color: var(--color-input-text);
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--color-input-bg);
+    border-color: #6366f1;
+    color: var(--color-input-text);
+    box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25);
+}
+
+.text-muted {
+    color: var(--color-muted) !important;
+}
+
+/* Estilos específicos */
+.bg-purple {
+    background-color: #6f42c1 !important;
+    color: white !important;
+}
+
+.badge {
+    color: white !important;
+}
+
+.bg-warning {
+    color: black !important;
+}
+
+/* Asegurar que Bootstrap se adapte al tema */
+[data-bs-theme="dark"] .bg-light {
+    background-color: var(--color-card-bg) !important;
+}
+
+[data-bs-theme="dark"] .text-body {
+    color: var(--color-text) !important;
+}
+
+/* Estilos para botones unificados */
+.btn-group-sm .btn {
+    padding: 0.25rem 0.5rem;
+    border-width: 1px;
+}
+
+/* Asegurar que los botones se vean bien en tema oscuro */
+[data-bs-theme="dark"] .btn-outline-primary {
+    color: #6ea8fe;
+    border-color: #6ea8fe;
+}
+
+[data-bs-theme="dark"] .btn-outline-primary:hover {
+    background-color: #6ea8fe;
+    color: #000;
+}
+
+[data-bs-theme="dark"] .btn-outline-secondary {
+    color: #a7acb1;
+    border-color: #a7acb1;
+}
+
+[data-bs-theme="dark"] .btn-outline-secondary:hover {
+    background-color: #a7acb1;
+    color: #000;
+}
+
+[data-bs-theme="dark"] .btn-outline-danger {
+    color: #ea868f;
+    border-color: #ea868f;
+}
+
+[data-bs-theme="dark"] .btn-outline-danger:hover {
+    background-color: #ea868f;
+    color: #000;
+}
+
+/* Mejoras para formularios en tema oscuro */
+[data-bs-theme="dark"] .form-label {
+    color: var(--color-text);
+}
+
+[data-bs-theme="dark"] .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+[data-bs-theme="dark"] .alert-success {
+    background-color: #0f5132;
+    border-color: #0c4128;
+    color: #d1e7dd;
+}
+
+[data-bs-theme="dark"] .card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.4);
+}
