@@ -73,22 +73,29 @@
                         @enderror
                     </div>
 
-                    <div class="d-flex justify-content-between">
-                        <a href="{{ route('contacts.show', $contact) }}" class="btn btn-secondary">
-                            <i class="bi bi-arrow-left"></i> Cancelar
-                        </a>
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check-circle"></i> Actualizar
-                            </button>
-                            <a href="{{ route('contacts.index') }}" class="btn btn-outline-primary">
-                                <i class="bi bi-list-ul"></i> Ver Todos
-                            </a>
-                        </div>
-                    </div>
+                    @php
+                        use Illuminate\Support\Str;
+                        $origin = session('contact_origin', route('contacts.index'));
+                        // Limpieza: si el origen es la misma página, ir a lista
+                        if (Str::contains($origin, ["/contacts/{$contact->id}", "/contacts/{$contact->id}/edit"])) {
+                            $origin = route('contacts.index');
+                        }
+                    @endphp
+
+<div class="card-footer bg-transparent">
+    <div class="d-flex justify-content-between align-items-center">
+        <a href="{{ $origin }}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Volver
+        </a>
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-check-circle"></i> Actualizar Contacto
+        </button>
+    </div>
+</div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 @endsection
+

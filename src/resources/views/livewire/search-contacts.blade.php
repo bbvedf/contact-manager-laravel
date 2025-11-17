@@ -145,14 +145,10 @@
                                 <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-outline-secondary rounded-0">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <form action="{{ route('contacts.destroy', $contact) }}" method="POST" class="d-inline flex-fill">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger w-100 rounded-0 rounded-end" 
-                                            onclick="return confirm('¿Eliminar este contacto?')">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </form>
+                                <button class="btn btn-outline-danger rounded-0 rounded-end btn-delete" 
+                                        data-delete-url="{{ route('contacts.destroy', $contact) }}">
+                                    <i class="bi bi-trash"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -205,14 +201,10 @@
                                         <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-outline-secondary rounded-0">
                                             <i class="bi bi-pencil"></i>
                                         </a>
-                                        <form action="{{ route('contacts.destroy', $contact) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger rounded-0 rounded-end" 
-                                                    onclick="return confirm('¿Eliminar este contacto?')">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </form>
+                                    <button class="btn btn-outline-danger rounded-0 rounded-end btn-delete" 
+                                            data-delete-url="{{ route('contacts.destroy', $contact) }}">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
                                     </div>
                                 </div>
                             </div>

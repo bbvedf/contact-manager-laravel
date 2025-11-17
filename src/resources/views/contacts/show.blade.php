@@ -6,24 +6,21 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="card-header">
                 <h4 class="mb-0">
                     <i class="bi bi-person-badge"></i> Detalle del Contacto
                 </h4>
-                <div class="btn-group">
-                    <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-outline-secondary btn-sm">
-                        <i class="bi bi-pencil"></i> Editar
-                    </a>
-                    <a href="{{ route('contacts.index') }}" class="btn btn-outline-primary btn-sm">
-                        <i class="bi bi-arrow-left"></i> Volver
-                    </a>
-                </div>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-8">
                         <h2 class="h4">{{ $contact->name }}</h2>
-                        <span class="badge bg-{{ $contact->category == 'work' ? 'info' : ($contact->category == 'family' ? 'success' : 'secondary') }} fs-6">
+                        <span class="badge bg-{{ 
+                            $contact->category == 'trabajo' ? 'purple' : 
+                            ($contact->category == 'familia' ? 'success' : 
+                            ($contact->category == 'amigos' ? 'warning' : 
+                            ($contact->category == 'otro' ? 'secondary' : 'primary'))) 
+                        }} fs-6">
                             {{ $contact->category }}
                         </span>
                         
@@ -61,6 +58,30 @@
                             Creado: {{ $contact->created_at->format('d/m/Y') }}<br>
                             Actualizado: {{ $contact->updated_at->format('d/m/Y') }}
                         </p>
+                    </div>
+                </div>
+            </div>
+            @php
+                use Illuminate\Support\Str;
+                $origin = session('contact_origin', route('contacts.index'));
+                // Limpieza: si el origen es la misma página, ir a lista
+                if (Str::contains($origin, ["/contacts/{$contact->id}", "/contacts/{$contact->id}/edit"])) {
+                    $origin = route('contacts.index');
+                }
+            @endphp
+            <div class="card-footer bg-transparent">
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="{{ $origin }}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Volver
+                    </a>
+                    <div class="btn-group">
+                        <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-primary">
+                            <i class="bi bi-pencil"></i> Editar Contacto
+                        </a>
+                        <button class="btn btn-outline-danger btn-delete" 
+                                data-delete-url="{{ route('contacts.destroy', $contact) }}">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </button>
                     </div>
                 </div>
             </div>

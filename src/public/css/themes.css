@@ -151,3 +151,44 @@ body {
 [data-bs-theme="dark"] .card {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.4);
 }
+
+/* Botones consistentes */
+.card-header .btn-group .btn,
+.card-footer .btn {
+    padding: 0.375rem 0.75rem;
+    font-weight: 500;
+}
+
+/* Espaciado consistente en headers/footers */
+.card-header, .card-footer {
+    padding: 1rem 1.25rem;
+}
+
+/* Estilos para el modal de confirmación */
+.modal-header {
+    border-bottom: 1px solid var(--color-card-border);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--color-card-border);
+}
+
+/* Asegurar que el modal se vea bien en tema oscuro */
+[data-bs-theme="dark"] .modal-content {
+    background-color: var(--color-card-bg);
+    color: var(--color-text);
+}
+
+[data-bs-theme="dark"] .modal-header,
+[data-bs-theme="dark"] .modal-footer {
+    border-color: var(--color-card-border);
+}
+
+/* Mejor espaciado para grupos de botones en footer */
+.card-footer .btn-group .btn {
+    margin-left: 0.5rem;
+}
+
+.card-footer .btn-group .btn:first-child {
+    margin-left: 0;
+}

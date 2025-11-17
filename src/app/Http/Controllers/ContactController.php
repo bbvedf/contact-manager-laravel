@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Exports\ContactsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -51,17 +52,26 @@ class ContactController extends Controller
      * Display the specified resource.
      */
     public function show(Contact $contact)
-    {
-        return view('contacts.show', compact('contact'));
+{
+    // Guardar de dónde venimos (excepto si venimos de editar esta misma página)
+    $previous = url()->previous();
+    if (!Str::contains($previous, ["/contacts/{$contact->id}/edit", "/contacts/{$contact->id}"])) {
+        session(['contact_origin' => $previous]);
     }
+    
+    return view('contacts.show', compact('contact'));
+}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Contact $contact)
-    {
-        return view('contacts.edit', compact('contact'));
+public function edit(Contact $contact)
+{
+    // Guardar de dónde venimos (excepto si venimos de ver esta misma página)
+    $previous = url()->previous();
+    if (!Str::contains($previous, ["/contacts/{$contact->id}", "/contacts/{$contact->id}/edit"])) {
+        session(['contact_origin' => $previous]);
     }
+    
+    return view('contacts.edit', compact('contact'));
+}
 
     /**
      * Update the specified resource in storage.
