@@ -1,5 +1,32 @@
 <div>
-    <!-- Barra de búsqueda y filtros -->
+    <!-- Título y botones PRIMERO -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+            <i class="bi bi-people-fill"></i> Mis Contactos
+        </h1>
+        <div class="btn-group">
+            <a href="{{ route('contacts.create') }}" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Nuevo Contacto
+            </a>
+            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-download"></i> Exportar
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item" href="#" wire:click.prevent="exportExcel">
+                        <i class="bi bi-file-earmark-excel"></i> Excel (.xlsx)
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#" wire:click.prevent="exportPdf">
+                        <i class="bi bi-file-earmark-pdf"></i> PDF (.pdf)
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Barra de búsqueda y filtros DESPUÉS -->
     <div class="card mb-4">
         <div class="card-body">
             <div class="row g-3 align-items-end">
@@ -53,6 +80,7 @@
             @endif
         </div>
     </div>
+
 
     <!-- Resultados -->
     @if($contacts->count() > 0)

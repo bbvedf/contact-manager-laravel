@@ -9,3 +9,7 @@ Route::get('/', function () {
 });
 
 Route::resource('contacts', ContactController::class);
+
+// Rutas de exportación
+Route::get('/contacts/export/excel', [ContactController::class, 'exportExcel'])->name('contacts.export.excel');
+Route::get('/contacts/export/pdf', [ContactController::class, 'exportPdf'])->name('contacts.export.pdf');

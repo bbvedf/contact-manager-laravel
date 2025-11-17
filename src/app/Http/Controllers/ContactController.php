@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use App\Exports\ContactsExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class ContactController extends Controller
 {
@@ -88,4 +92,27 @@ class ContactController extends Controller
         return redirect()->route('contacts.index')
             ->with('success', 'Contacto eliminado correctamente.');
     }
+
+    /**
+     * Exportar contactos a Excel
+     */
+    public function exportExcel()
+    {
+        return Excel::download(new ContactsExport, 'contactos-' . date('Y-m-d') . '.xlsx');
+    }
+
+    /**
+     * Exportar contactos a PDF
+     */
+    public function exportPdf()
+    {
+        $contacts = Contact::orderBy('name')->get();
+        
+        $pdf = PDF::loadView('contacts.pdf', compact('contacts'))
+            ->setPaper('a4', 'portrait')
+            ->setOptions(['defaultFont' => 'sans-serif']);
+        
+        return $pdf->download('contactos-' . date('Y-m-d') . '.pdf');
+    }
+
 }

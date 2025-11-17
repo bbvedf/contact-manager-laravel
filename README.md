@@ -14,6 +14,7 @@ Sistema de gestión de contactos desarrollado con Laravel, Docker y Bootstrap.
 
 - 🔄 **CRUD completo** - Crear, leer, actualizar y eliminar contactos
 - 🔍 **Búsqueda en tiempo real** - Filtrado instantáneo con Livewire
+- 📤 **Exportación filtrada** - Excel y PDF con los resultados de búsqueda
 - 📂 **Categorización** - Organiza contactos por tipo (Personal, Familia, Trabajo, etc.)
 - 🎨 **Interfaz responsive** - Diseño adaptable con Bootstrap 5
 - 🐳 **Dockerizado** - Entorno consistente con contenedores
