@@ -69,34 +69,73 @@
             
         </div>
     </div>
+ 
 
-  <!-- Selector de vista -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div class="text-muted small">
-            <i class="bi bi-info-circle"></i>
-            Mostrando {{ $contacts->count() }} contacto(s)
-            @if($search || $category)
-                @if($search) para "{{ $search }}" @endif
-                @if($category) en {{ $categories[$category] }} @endif
-                <a href="#" wire:click="clearFilters" class="text-danger ms-2">
-                    <i class="bi bi-x-circle"></i> Limpiar filtros
-                </a>
-            @endif
+
+    <!-- Selector de vista Y ordenación -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="text-muted small">
+        <i class="bi bi-info-circle"></i>
+        Mostrando {{ $contacts->count() }} contacto(s)
+        @if($search || $category)
+            @if($search) para "{{ $search }}" @endif
+            @if($category) en {{ $categories[$category] }} @endif
+            <a href="#" wire:click="clearFilters" class="text-danger ms-2">
+                <i class="bi bi-x-circle"></i> Limpiar filtros
+            </a>
+        @endif
+    </div>
+    
+    <div class="d-flex align-items-center gap-2">
+        <!-- Ordenación -->
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                <i class="bi bi-sort-down"></i>
+                Ordenar por 
+                @if($sortField === 'first_name') Nombre
+                @elseif($sortField === 'last_name') Apellido
+                @elseif($sortField === 'email') Email
+                @elseif($sortField === 'phone') Teléfono
+                @elseif($sortField === 'category') Categoría
+                @elseif($sortField === 'created_at') Fecha
+                @endif
+                ({{ $sortDirection === 'asc' ? 'Asc' : 'Desc' }})
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" wire:click.prevent="sortBy('first_name')">
+                    <i class="bi bi-sort-alpha-down"></i> Nombre
+                </a></li>
+                <li><a class="dropdown-item" href="#" wire:click.prevent="sortBy('last_name')">
+                    <i class="bi bi-sort-alpha-down"></i> Apellido
+                </a></li>
+                <li><a class="dropdown-item" href="#" wire:click.prevent="sortBy('email')">
+                    <i class="bi bi-envelope"></i> Email
+                </a></li>
+                <li><a class="dropdown-item" href="#" wire:click.prevent="sortBy('phone')">
+                    <i class="bi bi-telephone"></i> Teléfono
+                </a></li>
+                <li><a class="dropdown-item" href="#" wire:click.prevent="sortBy('category')">
+                    <i class="bi bi-tags"></i> Categoría
+                </a></li>
+                <li><a class="dropdown-item" href="#" wire:click.prevent="sortBy('created_at')">
+                    <i class="bi bi-calendar"></i> Fecha creación
+                </a></li>
+            </ul>
         </div>
-        
+
+        <!-- Selector de vista -->
         <div class="btn-group btn-group-sm" role="group">
             <button type="button" class="btn btn-{{ $viewMode === 'cards' ? 'primary' : 'outline-primary' }}" 
                     wire:click="$set('viewMode', 'cards')">
                 <i class="bi bi-grid-3x3-gap"></i> Tarjetas
             </button>
-
             <button type="button" class="btn btn-{{ $viewMode === 'list' ? 'primary' : 'outline-primary' }}" 
                     wire:click="$set('viewMode', 'list')">
                 <i class="bi bi-list-ul"></i> Lista
             </button>
         </div>
     </div>
-
+</div>
     
     <!-- Resultados -->
     @if($contacts->count() > 0)

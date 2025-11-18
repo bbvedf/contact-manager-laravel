@@ -12,24 +12,44 @@ class SearchContacts extends Component
 {
     public $search = '';
     public $category = '';
-    public $viewMode = 'cards'; // 'cards' o 'list'
+    public $viewMode = 'cards';
+    public $sortField = 'last_name';
+    public $sortDirection = 'asc';
+
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'category' => ['except' => ''],
+        'sortField' => ['except' => 'last_name'],
+        'sortDirection' => ['except' => 'asc']
+    ];
+
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortDirection = 'asc';
+        }
+
+        $this->sortField = $field;
+    }
 
     public function render()
     {
-    $contacts = Contact::query()
-        ->when($this->search, function ($query) {
-            $query->where('first_name', 'like', '%' . $this->search . '%')
-                ->orWhere('last_name', 'like', '%' . $this->search . '%')
-                ->orWhere('email', 'like', '%' . $this->search . '%')
-                ->orWhere('phone', 'like', '%' . $this->search . '%')
-                ->orWhere('notes', 'like', '%' . $this->search . '%');
-        })
-        ->when($this->category, function ($query) {
-            $query->where('category', $this->category);
-        })
-        ->orderBy('last_name')  // Primero por apellido
-        ->orderBy('first_name') // Luego por nombre
-        ->get();
+        $contacts = Contact::query()
+            ->when($this->search, function ($query) {
+                $query->where('first_name', 'like', '%' . $this->search . '%')
+                    ->orWhere('last_name', 'like', '%' . $this->search . '%')
+                    ->orWhere('email', 'like', '%' . $this->search . '%')
+                    ->orWhere('phone', 'like', '%' . $this->search . '%')
+                    ->orWhere('notes', 'like', '%' . $this->search . '%');
+            })
+            ->when($this->category, function ($query) {
+                $query->where('category', $this->category);
+            })
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->orderBy('first_name')
+            ->get();
 
         return view('livewire.search-contacts', [
             'contacts' => $contacts,
@@ -48,6 +68,8 @@ class SearchContacts extends Component
     {
         $this->search = '';
         $this->category = '';
+        $this->sortField = 'last_name';
+        $this->sortDirection = 'asc';
     }
 
     public function exportExcel()
