@@ -16,14 +16,28 @@
                     @csrf
                     @method('PUT')
                     
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nombre *</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" 
-                               id="name" name="name" value="{{ old('name', $contact->name) }}" required>
-                        @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="mb-3">
+            <label for="first_name" class="form-label">Nombre *</label>
+            <input type="text" class="form-control @error('first_name') is-invalid @enderror" 
+                   id="first_name" name="first_name" value="{{ old('first_name', isset($contact) ? $contact->first_name : '') }}" required>
+            @error('first_name')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Apellidos</label>
+            <input type="text" class="form-control @error('last_name') is-invalid @enderror" 
+                   id="last_name" name="last_name" value="{{ old('last_name', isset($contact) ? $contact->last_name : '') }}">
+            @error('last_name')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+</div>
 
                     <div class="row">
                         <div class="col-md-6">

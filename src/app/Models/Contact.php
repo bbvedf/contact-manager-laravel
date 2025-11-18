@@ -10,9 +10,10 @@ class Contact extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
-        'phone',
+        'phone', 
         'category',
         'notes',
     ];
@@ -22,12 +23,20 @@ class Contact extends Model
     ];
 
     /**
+     * Accesor para nombre completo
+     */
+    public function getFullNameAttribute()
+    {
+        return trim($this->first_name . ' ' . $this->last_name);
+    }
+
+    /**
      * Categorías disponibles para los contactos
      */
     public const CATEGORIES = [
         'personal' => 'Personal',
         'familia' => 'Familia',
-        'trabajo' => 'Trabajo', 
+        'trabajo' => 'Trabajo',
         'amigos' => 'Amigos',
         'otro' => 'Otro',
     ];

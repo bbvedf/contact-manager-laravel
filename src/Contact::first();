@@ -1,0 +1,28 @@
+[90m= [39m[
+    [
+      "[34mid[39m" => [35m1[39m,
+      "[34mfirst_name[39m" => "[32mMaría[39m",
+      "[34mlast_name[39m" => "[32mGarcía[39m",
+    ],
+    [
+      "[34mid[39m" => [35m3[39m,
+      "[34mfirst_name[39m" => "[32mJavier[39m",
+      "[34mlast_name[39m" => "[32mMoreno[39m",
+    ],
+    [
+      "[34mid[39m" => [35m4[39m,
+      "[34mfirst_name[39m" => "[32mPepe[39m",
+      "[34mlast_name[39m" => "[32mGotera[39m",
+    ],
+    [
+      "[34mid[39m" => [35m5[39m,
+      "[34mfirst_name[39m" => "[32mMaría[39m",
+      "[34mlast_name[39m" => "[32mGarcía López[39m",
+    ],
+    [
+      "[34mid[39m" => [35m6[39m,
+      "[34mfirst_name[39m" => "[32mCarlos[39m",
+      "[34mlast_name[39m" => "[32mRodríguez Martín[39m",
+    ],
+  ]
+

@@ -14,7 +14,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-8">
-                        <h2 class="h4">{{ $contact->name }}</h2>
+                        <h2 class="h4">{{ $contact->last_name }}, {{ $contact->first_name }}</h2>
                         <span class="badge bg-{{ 
                             $contact->category == 'trabajo' ? 'purple' : 
                             ($contact->category == 'familia' ? 'success' : 

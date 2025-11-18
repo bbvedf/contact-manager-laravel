@@ -107,7 +107,7 @@
                 <div class="col-md-6 col-lg-4 mb-3">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $contact->name }}</h5>
+                            <h5 class="card-title">{{ $contact->last_name }}, {{ $contact->first_name }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 <span class="badge bg-{{ 
                                     $contact->category == 'trabajo' ? 'purple' : 
@@ -164,7 +164,7 @@
                         <div class="list-group-item">
                             <div class="row align-items-center">
                                 <div class="col-md-3">
-                                    <h6 class="mb-1">{{ $contact->name }}</h6>
+                                    <h6 class="mb-1">{{ $contact->last_name }}, {{ $contact->first_name }}</h6>
                                     <span class="badge bg-{{ 
                                         $contact->category == 'trabajo' ? 'purple' : 
                                         ($contact->category == 'familia' ? 'success' : 

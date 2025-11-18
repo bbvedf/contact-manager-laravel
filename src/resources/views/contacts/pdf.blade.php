@@ -37,7 +37,7 @@
         <tbody>
             @foreach($contacts as $contact)
             <tr>
-                <td>{{ $contact->name }}</td>
+                <td>{{ $contact->last_name }}, {{ $contact->first_name }}</td>
                 <td>{{ $contact->email ?? '-' }}</td>
                 <td>{{ $contact->phone ?? '-' }}</td>
                 <td>

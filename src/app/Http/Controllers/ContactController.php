@@ -17,7 +17,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::orderBy('name')->get();
+        $contacts = Contact::orderBy('last_name')->get();
         return view('contacts.index', compact('contacts'));
     }
 
@@ -35,7 +35,8 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:100',
+            'first_name' => 'required|string|max:50',
+            'last_name' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:100',
             'phone' => 'nullable|string|max:20',
             'category' => 'required|string|in:personal,familia,trabajo,amigos,otro',
@@ -79,7 +80,8 @@ public function edit(Contact $contact)
     public function update(Request $request, Contact $contact)
     {
         $request->validate([
-            'name' => 'required|string|max:100',
+            'first_name' => 'required|string|max:50',
+            'last_name' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:100',
             'phone' => 'nullable|string|max:20',
             'category' => 'required|string|in:personal,familia,trabajo,amigos,otro',
