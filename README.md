@@ -85,3 +85,9 @@ contact-manager-laravel/
 
 ## 📝 Licencia
 MIT
+
+## 📸 Capturas de pantalla
+|                                    |                                    |                                    |
+|:----------------------------------:|:----------------------------------:|:----------------------------------:|
+| **Tarjetas – Modo oscuro**<br>![Tarjetas oscuro](screenshots/cont01.png) | **Lista – Modo oscuro**<br>![Lista oscuro](screenshots/cont02.png) | **Búsqueda y filtros**<br>![Búsqueda](screenshots/cont03.png) |
+| **Categorías**<br>![Categorías](screenshots/cont04.png) | **Edición con avatar**<br>![Edición avatar](screenshots/cont06.png) | **Exportar a Excel/PDF**<br>![Exportar](screenshots/cont05.png) |
