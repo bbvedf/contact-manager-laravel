@@ -20,40 +20,50 @@
                             ($contact->category == 'familia' ? 'success' : 
                             ($contact->category == 'amigos' ? 'warning' : 
                             ($contact->category == 'otro' ? 'secondary' : 'primary'))) 
-                        }} fs-6">
+                        }}">
                             {{ $contact->category }}
                         </span>
                         
                         <hr>
                         
-                        <div class="contact-info">
+                        <div class="contact-info mt-4">
                             @if($contact->email)
-                            <p class="mb-2">
-                                <strong><i class="bi bi-envelope text-primary"></i> Email:</strong><br>
-                                <a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a>
-                            </p>
+                            <div class="d-flex align-items-start gap-3 mb-4">
+                                <i class="bi bi-envelope text-primary fs-4 mt-1"></i>
+                                <div>
+                                    <strong>Email:</strong>
+                                    <a href="mailto:{{ $contact->email }}" class="text-decoration-none">{{ $contact->email }}</a>
+                                </div>
+                            </div>
                             @endif
-                            
+
                             @if($contact->phone)
-                            <p class="mb-2">
-                                <strong><i class="bi bi-telephone text-success"></i> Teléfono:</strong><br>
-                                <a href="tel:{{ $contact->phone }}">{{ $contact->phone }}</a>
-                            </p>
+                            <div class="d-flex align-items-start gap-3 mb-4">
+                                <i class="bi bi-telephone text-success fs-4 mt-1"></i>
+                                <div>
+                                    <strong>Teléfono:</strong>
+                                    <a href="tel:{{ $contact->phone }}" class="text-decoration-none">{{ $contact->phone }}</a>
+                                </div>
+                            </div>
                             @endif
-                            
+
                             @if($contact->notes)
-                            <p class="mb-2">
-                                <strong><i class="bi bi-journal-text text-warning"></i> Notas:</strong><br>
-                                {{ $contact->notes }}
-                            </p>
+                            <div class="d-flex align-items-start gap-3 mb-4">
+                                <i class="bi bi-journal-text text-warning fs-4 mt-1"></i>
+                                <div>
+                                    <strong>Notas:</strong>
+                                    <span class="text-muted">{{ nl2br(e($contact->notes)) }}</span>
+                                </div>
+                            </div>
                             @endif
                         </div>
                     </div>
                     <div class="col-md-4 text-center">
-                        <div class="contact-avatar bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                             style="width: 100px; height: 100px; font-size: 2rem;">
-                            <i class="bi bi-person-fill"></i>
-                        </div>
+                        <!-- Avatar corregido -->
+                        <img src="{{ $contact->profile_picture ? asset('storage/profiles/' . $contact->profile_picture) : $contact->avatar_url }}" 
+                        alt="{{ $contact->full_name }}"
+                        class="rounded-circle mb-3 shadow"
+                        style="width: 120px; height: 120px; object-fit: cover; border: 4px solid var(--bs-card-border-color);">
                         <p class="text-muted small">
                             Creado: {{ $contact->created_at->format('d/m/Y') }}<br>
                             Actualizado: {{ $contact->updated_at->format('d/m/Y') }}

@@ -12,3 +12,8 @@
 .docker/
 !.docker/api.dockerfile
 !.docker/nginx.dockerfile
+
+/storage/*
+/tmp/*
+/src/public/vendor/livewire/*
+/src/scripts/*

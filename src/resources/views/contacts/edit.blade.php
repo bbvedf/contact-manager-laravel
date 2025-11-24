@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Editar: ' . $contact->name)
+@section('title', 'Editar Contacto')
 
 @section('content')
 <div class="row justify-content-center">
@@ -12,100 +12,121 @@
                 </h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('contacts.update', $contact) }}" method="POST">
+                <form action="{{ route('contacts.update', $contact) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    
-<div class="row">
-    <div class="col-md-6">
-        <div class="mb-3">
-            <label for="first_name" class="form-label">Nombre *</label>
-            <input type="text" class="form-control @error('first_name') is-invalid @enderror" 
-                   id="first_name" name="first_name" value="{{ old('first_name', isset($contact) ? $contact->first_name : '') }}" required>
-            @error('first_name')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="mb-3">
-            <label for="last_name" class="form-label">Apellidos</label>
-            <input type="text" class="form-control @error('last_name') is-invalid @enderror" 
-                   id="last_name" name="last_name" value="{{ old('last_name', isset($contact) ? $contact->last_name : '') }}">
-            @error('last_name')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-    </div>
-</div>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name" 
+                                       value="{{ old('first_name', $contact->first_name) }}" required>
+                                @error('first_name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name" 
+                                       value="{{ old('last_name', $contact->last_name) }}" required>
+                                @error('last_name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" 
-                                       id="email" name="email" value="{{ old('email', $contact->email) }}">
+                                <input type="email" class="form-control" id="email" name="email" 
+                                       value="{{ old('email', $contact->email) }}">
                                 @error('email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="col-md-6">
+
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Teléfono</label>
-                                <input type="text" class="form-control @error('phone') is-invalid @enderror" 
-                                       id="phone" name="phone" value="{{ old('phone', $contact->phone) }}">
+                                <input type="text" class="form-control" id="phone" name="phone" 
+                                       value="{{ old('phone', $contact->phone) }}">
                                 @error('phone')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Categoría</label>
+                                <select class="form-select" id="category" name="category" required>
+                                    <option value="personal" {{ old('category', $contact->category) == 'personal' ? 'selected' : '' }}>Personal</option>
+                                    <option value="familia" {{ old('category', $contact->category) == 'familia' ? 'selected' : '' }}>Familia</option>
+                                    <option value="trabajo" {{ old('category', $contact->category) == 'trabajo' ? 'selected' : '' }}>Trabajo</option>
+                                    <option value="amigos" {{ old('category', $contact->category) == 'amigos' ? 'selected' : '' }}>Amigos</option>
+                                    <option value="otro" {{ old('category', $contact->category) == 'otro' ? 'selected' : '' }}>Otro</option>
+                                </select>
+                                @error('category')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="notes" class="form-label">Notas</label>
+                                <textarea class="form-control" id="notes" name="notes" rows="3">{{ old('notes', $contact->notes) }}</textarea>
+                                @error('notes')
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Categoría *</label>
-                        <select class="form-select @error('category') is-invalid @enderror" 
-                                id="category" name="category" required>
-                            <option value="">Seleccionar categoría...</option>
-                            <option value="personal" {{ old('category', isset($contact) ? $contact->category : '') == 'personal' ? 'selected' : '' }}>Personal</option>
-                            <option value="familia" {{ old('category', isset($contact) ? $contact->category : '') == 'familia' ? 'selected' : '' }}>Familia</option>
-                            <option value="trabajo" {{ old('category', isset($contact) ? $contact->category : '') == 'trabajo' ? 'selected' : '' }}>Trabajo</option>
-                            <option value="amigos" {{ old('category', isset($contact) ? $contact->category : '') == 'amigos' ? 'selected' : '' }}>Amigos</option>
-                            <option value="otro" {{ old('category', isset($contact) ? $contact->category : '') == 'otro' ? 'selected' : '' }}>Otro</option>
-                        </select>
-                        @error('category')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+                        <div class="col-md-4">
+    <div class="text-center">
+        <!-- Avatar actual con botón flotante -->
+        <div class="position-relative d-inline-block mb-4">
+            <img src="{{ $contact->profile_picture 
+                ? asset('storage/profiles/' . $contact->profile_picture) 
+                : $contact->avatar_url }}" 
+                 alt="{{ $contact->full_name }}"
+                 class="rounded-circle shadow-sm"
+                 style="width: 160px; height: 160px; object-fit: cover; border: 5px solid var(--bs-border-color);"
+                 id="current-avatar">
 
-                    <div class="mb-3">
-                        <label for="notes" class="form-label">Notas</label>
-                        <textarea class="form-control @error('notes') is-invalid @enderror" 
-                                  id="notes" name="notes" rows="3">{{ old('notes', $contact->notes) }}</textarea>
-                        @error('notes')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+            <!-- Botón flotante para cambiar foto -->
+            <label for="profile_picture" class="btn btn-primary rounded-circle position-absolute bottom-0 end-0 shadow"
+                   style="width: 44px; height: 44px; padding: 0; display: flex; align-items: center; justify-content: center;">
+                <i class="bi bi-camera-fill"></i>
+                <input type="file" 
+                       id="profile_picture" 
+                       name="profile_picture" 
+                       accept="image/jpeg,image/png,image/webp"
+                       class="d-none"
+                       onchange="previewAvatar(event)">
+            </label>
+        </div>
 
-                    @php
-                        use Illuminate\Support\Str;
-                        $origin = session('contact_origin', route('contacts.index'));
-                        // Limpieza: si el origen es la misma página, ir a lista
-                        if (Str::contains($origin, ["/contacts/{$contact->id}", "/contacts/{$contact->id}/edit"])) {
-                            $origin = route('contacts.index');
-                        }
-                    @endphp
+        @error('profile_picture')
+            <div class="text-danger small mt-2">{{ $message }}</div>
+        @enderror
 
-<div class="card-footer bg-transparent">
-    <div class="d-flex justify-content-between align-items-center">
-        <a href="{{ $origin }}" class="btn btn-outline-secondary">
-            <i class="bi bi-arrow-left"></i> Volver
-        </a>
-        <button type="submit" class="btn btn-primary">
-            <i class="bi bi-check-circle"></i> Actualizar Contacto
-        </button>
+        <div class="form-text small text-muted mt-3">
+            Formatos: JPG, PNG, WebP · Máximo: 2 MB
+        </div>
+    </div>
+
+    <!-- Fechas -->
+    <div class="mt-4 p-3 small text-muted">
+        <p class="mb-1"><strong>Creado:</strong> {{ $contact->created_at->format('d/m/Y H:i') }}</p>
+        <p class="mb-0"><strong>Actualizado:</strong> {{ $contact->updated_at->format('d/m/Y H:i') }}</p>
     </div>
 </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ route('contacts.show', $contact) }}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> Actualizar Contacto
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

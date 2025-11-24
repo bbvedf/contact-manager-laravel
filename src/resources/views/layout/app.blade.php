@@ -83,42 +83,28 @@
     @livewireScripts
     @stack('scripts')
 
+    <!-- Script para preview de avatar -->
+    <script>
+function previewAvatar(event) {
+    const file = event.target.files[0];
+    if (!file) return;
 
-<script>
-    // Versión limpia - sin console.log
-    function getCurrentTheme() {
-        return localStorage.getItem('theme') || 'light';
+    if (!file.type.match('image.*')) {
+        alert('Solo se permiten imágenes');
+        return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+        alert('La imagen no puede pesar más de 2MB');
+        event.target.value = '';
+        return;
     }
 
-    function applyTheme(theme) {
-        document.documentElement.setAttribute('data-bs-theme', theme);
-        localStorage.setItem('theme', theme);
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('current-avatar').src = e.target.result;
     }
-
-    // Aplicar tema al cargar
-    applyTheme(getCurrentTheme());
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const themeSwitch = document.getElementById('themeSwitch');
-        
-        if (themeSwitch) {
-            themeSwitch.checked = getCurrentTheme() === 'dark';
-            
-            themeSwitch.addEventListener('change', function() {
-                const theme = this.checked ? 'dark' : 'light';
-                applyTheme(theme);
-                
-                fetch('/theme-toggle', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({ theme: theme })
-                });
-            });
-        }
-    });
+    reader.readAsDataURL(file);
+}
 </script>
 
     <!-- Modal de confirmación para eliminar -->
@@ -172,6 +158,5 @@
             });
         });
     </script>
-
 </body>
 </html>

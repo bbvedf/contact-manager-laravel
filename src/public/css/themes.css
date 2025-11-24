@@ -81,6 +81,9 @@ body {
 
 .badge {
     color: white !important;
+    font-size: 0.75rem !important;   /* 12px */
+    padding: 0.35em 0.65em;
+    font-weight: 500;
 }
 
 .bg-warning {
@@ -215,5 +218,58 @@ body {
 /* Ocultar el texto de resumen de la paginación */
 .justify-content-sm-between .small.text-muted {
     display: none !important;
+}
+
+
+/* Estilos para avatares de contacto */
+.contact-avatar {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.contact-avatar-small {
+    transition: transform 0.2s ease;
+}
+
+.contact-avatar-small:hover {
+    transform: scale(1.1);
+}
+
+/* Asegurar que los avatares se vean bien en tema oscuro */
+[data-bs-theme="dark"] .contact-avatar,
+[data-bs-theme="dark"] .contact-avatar-small {
+    border-color: var(--color-card-border) !important;
+}
+
+/* Mejoras para vista detalle */
+.contact-info p {
+    margin-bottom: 1rem;
+}
+
+.contact-info strong {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+
+/* Mejoras para el formulario de edición*/
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-control:disabled {
+    background-color: var(--color-input-bg);
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.bg-light {
+    background-color: var(--color-list-item-hover) !important;
+    border: 1px solid var(--color-card-border);
 }
 
