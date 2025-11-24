@@ -39,7 +39,7 @@
                         class="form-control" 
                         id="search"
                         placeholder="Buscar por nombre, email, teléfono..."
-                        wire:model.live="search"
+                        wire:model.live.debounce.300ms="search"
                     >
                 </div>
                 
@@ -48,7 +48,7 @@
                     <select 
                         class="form-select" 
                         id="category"
-                        wire:model.live="category"
+                        wire:model.live.debounce.300ms="category"
                     >
                         @foreach($categories as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
@@ -74,13 +74,13 @@
 
     <!-- Selector de vista Y ordenación -->
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <div class="text-muted small">
-        <i class="bi bi-info-circle"></i>
-        Mostrando {{ $contacts->count() }} contacto(s)
+<div class="text-muted small">
+    <i class="bi bi-info-circle"></i>
+    Mostrando {{ $contacts->firstItem() ?? 0 }}-{{ $contacts->lastItem() ?? 0 }} de {{ $contacts->total() }} contacto(s)
         @if($search || $category)
             @if($search) para "{{ $search }}" @endif
             @if($category) en {{ $categories[$category] }} @endif
-            <a href="#" wire:click="clearFilters" class="text-danger ms-2">
+            <a href="#" wire:click.prevent="clearFilters" class="text-danger ms-2">
                 <i class="bi bi-x-circle"></i> Limpiar filtros
             </a>
         @endif
@@ -123,20 +123,27 @@
             </ul>
         </div>
 
-        <!-- Selector de vista -->
+        <!-- Selector de vista - CAMBIADO: ahora usa método dedicado -->
         <div class="btn-group btn-group-sm" role="group">
             <button type="button" class="btn btn-{{ $viewMode === 'cards' ? 'primary' : 'outline-primary' }}" 
-                    wire:click="$set('viewMode', 'cards')">
+                    wire:click="setViewMode('cards')">
                 <i class="bi bi-grid-3x3-gap"></i> Tarjetas
             </button>
             <button type="button" class="btn btn-{{ $viewMode === 'list' ? 'primary' : 'outline-primary' }}" 
-                    wire:click="$set('viewMode', 'list')">
+                    wire:click="setViewMode('list')">
                 <i class="bi bi-list-ul"></i> Lista
             </button>
         </div>
     </div>
 </div>
-    
+
+    <!-- Paginación -->
+    @if($contacts->hasPages())
+        <div class="mt-4">
+            {{ $contacts->links('livewire::bootstrap', ['show_info' => false]) }}
+        </div>
+    @endif
+
     <!-- Resultados -->
     @if($contacts->count() > 0)
         @if($viewMode === 'cards')
@@ -259,11 +266,18 @@
             <h3 class="text-muted">No se encontraron contactos</h3>
             <p class="text-muted">
                 @if($search || $category)
-                    Intenta con otros términos de búsqueda o <a href="#" wire:click="clearFilters">limpiar los filtros</a>.
+                    Intenta con otros términos de búsqueda o <a href="#" wire:click.prevent="clearFilters">limpiar los filtros</a>.
                 @else
                     No hay contactos disponibles. <a href="{{ route('contacts.create') }}">Crea el primero</a>.
                 @endif
             </p>
         </div>
     @endif
+
+    <!-- Indicador de carga -->
+    <div wire:loading class="position-fixed top-50 start-50 translate-middle" style="z-index: 9999;">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+    </div>
 </div>

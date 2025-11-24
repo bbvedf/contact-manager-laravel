@@ -192,3 +192,28 @@ body {
 .card-footer .btn-group .btn:first-child {
     margin-left: 0;
 }
+
+/* Paginación simplificada */
+.pagination .page-link {
+    background-color: var(--color-card-bg);
+    border-color: var(--color-card-border);
+    color: var(--color-text);
+}
+
+.pagination .page-link:hover {
+    background-color: var(--color-list-item-hover);
+    border-color: var(--color-card-border);
+    color: var(--color-text);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #6366f1;
+    border-color: #6366f1;
+    color: white;
+}
+
+/* Ocultar el texto de resumen de la paginación */
+.justify-content-sm-between .small.text-muted {
+    display: none !important;
+}
+

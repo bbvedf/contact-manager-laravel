@@ -4,24 +4,39 @@ namespace App\Http\Livewire;
 
 use App\Models\Contact;
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Exports\ContactsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class SearchContacts extends Component
 {
+    use WithPagination;
+    
     public $search = '';
     public $category = '';
     public $viewMode = 'cards';
     public $sortField = 'last_name';
     public $sortDirection = 'asc';
+    public $perPage = 12;
 
     protected $queryString = [
         'search' => ['except' => ''],
         'category' => ['except' => ''],
         'sortField' => ['except' => 'last_name'],
-        'sortDirection' => ['except' => 'asc']
+        'sortDirection' => ['except' => 'asc']        
     ];
+
+    // AÑADIDO: Resetear página cuando cambian los filtros
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingCategory()
+    {
+        $this->resetPage();
+    }
 
     public function sortBy($field)
     {
@@ -32,6 +47,13 @@ class SearchContacts extends Component
         }
 
         $this->sortField = $field;
+        $this->resetPage(); // AÑADIDO: resetear al ordenar
+    }
+
+    // AÑADIDO: Método dedicado para cambiar vista (evita $set directo)
+    public function setViewMode($mode)
+    {
+        $this->viewMode = $mode;
     }
 
     public function render()
@@ -49,7 +71,7 @@ class SearchContacts extends Component
             })
             ->orderBy($this->sortField, $this->sortDirection)
             ->orderBy('first_name')
-            ->get();
+            ->paginate($this->perPage);
 
         return view('livewire.search-contacts', [
             'contacts' => $contacts,
@@ -70,6 +92,7 @@ class SearchContacts extends Component
         $this->category = '';
         $this->sortField = 'last_name';
         $this->sortDirection = 'asc';
+        $this->resetPage();
     }
 
     public function exportExcel()
@@ -130,7 +153,7 @@ class SearchContacts extends Component
                 ];
 
                 return [
-                    $contact->last_name . ', ' . $contact->first_name, // Cambiado aquí
+                    $contact->last_name . ', ' . $contact->first_name,
                     $contact->email ?? '',
                     $contact->phone ?? '',
                     $categories[$contact->category] ?? $contact->category,
@@ -169,8 +192,8 @@ class SearchContacts extends Component
             ->when($this->category, function ($query) {
                 $query->where('category', $this->category);
             })
-            ->orderBy('last_name')  // Primero por apellido
-            ->orderBy('first_name') // Luego por nombre
+            ->orderBy('last_name')
+            ->orderBy('first_name')
             ->get();
     }
 }
