@@ -12,7 +12,7 @@
                 </h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('contacts.update', $contact) }}" method="POST" enctype="multipart/form-data">
+                <form action="/contactos/{{ $contact->id }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -120,7 +120,7 @@
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('contacts.show', $contact) }}" class="btn btn-outline-secondary">
+                        <a href="/contactos/{{ $contact->id }}" class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left"></i> Cancelar
                         </a>
                         <button type="submit" class="btn btn-primary">

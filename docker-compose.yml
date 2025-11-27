@@ -11,7 +11,10 @@ services:
       - ./storage:/var/www/html/storage
     networks:
       - contact-manager-network
-
+      - shared_net
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  
   webserver:
     image: nginx:alpine
     container_name: contact-manager-webserver
@@ -24,6 +27,7 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf      
     networks:
       - contact-manager-network
+      - shared_net
 
   db:
     image: mysql:8.0
@@ -48,3 +52,6 @@ volumes:
 networks:
   contact-manager-network:
     driver: bridge
+  shared_net:
+    name: shared_net
+    external: true

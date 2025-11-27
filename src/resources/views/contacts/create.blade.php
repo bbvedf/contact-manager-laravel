@@ -12,7 +12,7 @@
                 </h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('contacts.store') }}" method="POST">
+                <form action="/store" method="POST">
                     @csrf
                     
 <div class="row">
@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('contacts.index') }}" class="btn btn-secondary">
+                        <a href="/contactos/" class="btn btn-secondary">
                             <i class="bi bi-arrow-left"></i> Cancelar
                         </a>
                         <button type="submit" class="btn btn-primary">

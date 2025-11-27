@@ -73,23 +73,23 @@
             </div>
             @php
                 use Illuminate\Support\Str;
-                $origin = session('contact_origin', route('contacts.index'));
+                $origin = session('contact_origin', route('index'));
                 // Limpieza: si el origen es la misma página, ir a lista
                 if (Str::contains($origin, ["/contacts/{$contact->id}", "/contacts/{$contact->id}/edit"])) {
-                    $origin = route('contacts.index');
+                    $origin = route('index');
                 }
             @endphp
             <div class="card-footer bg-transparent">
                 <div class="d-flex justify-content-between align-items-center">
-                    <a href="{{ $origin }}" class="btn btn-outline-secondary">
+                    <a href="/contactos/" class="btn btn-outline-secondary">
                         <i class="bi bi-arrow-left"></i> Volver
                     </a>
                     <div class="btn-group">
-                        <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-primary">
+                        <a href="/contactos/{{ $contact->id }}/edit" class="btn btn-primary">
                             <i class="bi bi-pencil"></i> Editar Contacto
                         </a>
                         <button class="btn btn-outline-danger btn-delete" 
-                                data-delete-url="{{ route('contacts.destroy', $contact) }}">
+                                data-delete-url="/contactos/{{ $contact->id }}">
                             <i class="bi bi-trash"></i> Eliminar
                         </button>
                     </div>

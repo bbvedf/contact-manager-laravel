@@ -11,13 +11,64 @@
     <!-- Nuestros estilos -->
     <link href="{{ asset('css/themes.css') }}" rel="stylesheet">
     
-    @livewireStyles
+    
+
+<!-- BLOQUEO TOTAL de Livewire auto-mágico -->
+<script>
+// 1. BLOQUEAR cualquier intento de cargar Livewire automáticamente
+window.livewireDisabled = true;
+
+// 2. Interceptar y REDIRIGIR todas las peticiones problemáticas
+const originalFetch = window.fetch;
+window.fetch = function(url, options = {}) {
+    if (typeof url === 'string') {
+        if (url.includes('/livewire/update') && !url.includes('/contactos/')) {
+            console.log('🚀 Redirigiendo Livewire update a subcarpeta');
+            url = url.replace('/livewire/update', '/contactos/livewire/update');
+        }
+        if (url.includes('/vendor/livewire/livewire.js') && !url.includes('/contactos/')) {
+            console.log('🚀 BLOQUEANDO Livewire malo');
+            return Promise.reject(new Error('Livewire bloqueado')); // ← BLOQUEAR el malo
+        }
+    }
+    return originalFetch(url, options);
+};
+
+// 3. También interceptar XMLHttpRequest
+const originalXHROpen = XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open = function(method, url, async, user, password) {
+    if (typeof url === 'string' && url.includes('/livewire/update') && !url.includes('/contactos/')) {
+        console.log('🚀 Redirigiendo XHR Livewire update');
+        url = url.replace('/livewire/update', '/contactos/livewire/update');
+    }
+    return originalXHROpen.call(this, method, url, async, user, password);
+};
+
+// 4. CARGAR SOLO el Livewire bueno
+document.addEventListener('DOMContentLoaded', function() {
+    // Esperar un poco para que no se cargue el malo
+    setTimeout(() => {
+        const script = document.createElement('script');
+        script.src = 'https://ryzenpc.mooo.com/contactos/vendor/livewire/livewire.js';
+        script.onload = function() {
+            if (window.Livewire) {
+                Livewire.start();
+                console.log('✅ Livewire bueno cargado');
+            }
+        };
+        document.head.appendChild(script);
+    }, 100);
+});
+</script>
+    
+    
+
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('contacts.index') }}">
+            <a class="navbar-brand" href="{{ route('index') }}">
                 <i class="bi bi-person-lines-fill"></i> Contact Manager
             </a>
             
@@ -78,9 +129,8 @@
                 });
             }
         });
-    </script>
+    </script>    
     
-    @livewireScripts
     @stack('scripts')
 
     <!-- Script para preview de avatar -->

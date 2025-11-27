@@ -5,7 +5,7 @@
             <i class="bi bi-people-fill"></i> Mis Contactos
         </h1>
         <div class="btn-group">
-            <a href="{{ route('contacts.create') }}" class="btn btn-primary">
+            <a href="/contactos/create" class="btn btn-primary">                
                 <i class="bi bi-plus-circle"></i> Nuevo Contacto
             </a>
             <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown">
@@ -190,14 +190,14 @@
 
                         <div class="card-footer bg-transparent">
                             <div class="btn-group btn-group-sm w-100" role="group">
-                                <a href="{{ route('contacts.show', $contact) }}" class="btn btn-outline-primary rounded-0 rounded-start">
+                                <a href="/contactos/{{ $contact->id }}" class="btn btn-outline-primary rounded-0 rounded-start">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-outline-secondary rounded-0">
+                                <a href="/contactos/{{ $contact->id }}/edit" class="btn btn-outline-secondary rounded-0">
                                     <i class="bi bi-pencil"></i>
                                 </a>
                                 <button class="btn btn-outline-danger rounded-0 rounded-end btn-delete" 
-                                        data-delete-url="{{ route('contacts.destroy', $contact) }}">
+                                        data-delete-url="/contactos/{{ $contact->id }}">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </div>
@@ -255,14 +255,14 @@
                                 </div>
                                 <div class="col-md-2 text-end">
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <a href="{{ route('contacts.show', $contact) }}" class="btn btn-outline-primary rounded-0 rounded-start">
+                                        <a href="/contactos/{{ $contact->id }}" class="btn btn-outline-primary rounded-0 rounded-start">
                                             <i class="bi bi-eye"></i>
                                         </a>
-                                        <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-outline-secondary rounded-0">
+                                        <a href="/contactos/{{ $contact->id }}/edit" class="btn btn-outline-secondary rounded-0">
                                             <i class="bi bi-pencil"></i>
                                         </a>
                                     <button class="btn btn-outline-danger rounded-0 rounded-end btn-delete" 
-                                            data-delete-url="{{ route('contacts.destroy', $contact) }}">
+                                            data-delete-url="/contactos/{{ $contact->id }}">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                     </div>
@@ -282,7 +282,7 @@
                 @if($search || $category)
                     Intenta con otros términos de búsqueda o <a href="#" wire:click.prevent="clearFilters">limpiar los filtros</a>.
                 @else
-                    No hay contactos disponibles. <a href="{{ route('contacts.create') }}">Crea el primero</a>.
+                    No hay contactos disponibles. <a href="/contactos/create">Crea el primero</a>.
                 @endif
             </p>
         </div>

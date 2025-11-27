@@ -7,8 +7,14 @@
 
 
 # Contact Manager - Laravel
-
 Sistema de gestión de contactos desarrollado con Laravel, Docker y Bootstrap.
+
+## 🔗 Integración
+
+Esta aplicación está diseñada para funcionar en el subdirectorio `/contactos/` como parte del ecosistema de aplicaciones.
+
+**URL de producción**: `https://ryzenpc.mooo.com/contactos/`
+
 
 ## 🚀 Características
 

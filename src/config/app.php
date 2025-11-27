@@ -121,6 +121,9 @@ return [
     'maintenance' => [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
-    ],
+    ],    
 
+    // Contactos - Configuración para Subcarpeta y Livewire
+    'livewire_url' => env('APP_URL', 'http://localhost'), 
+    'livewire_asset_url' => env('ASSET_URL', null),
 ];

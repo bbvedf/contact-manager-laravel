@@ -26,7 +26,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contacts.create');
+        return redirect('/');
     }
 
     /**
@@ -45,7 +45,7 @@ class ContactController extends Controller
 
         Contact::create($request->all());
 
-        return redirect()->route('contacts.index')
+        return redirect('/contactos/')
             ->with('success', 'Contacto creado correctamente.');
     }
 
@@ -107,7 +107,7 @@ if ($request->hasFile('profile_picture')) {
 
         $contact->update($validated);
 
-        return redirect()->route('contacts.show', $contact)
+        return redirect('/contactos/' . $contact->id)
                          ->with('success', 'Contacto actualizado correctamente');
     }
 
@@ -118,7 +118,7 @@ if ($request->hasFile('profile_picture')) {
     {
         $contact->delete();
 
-        return redirect()->route('contacts.index')
+        return redirect('/contactos/')
             ->with('success', 'Contacto eliminado correctamente.');
     }
 
