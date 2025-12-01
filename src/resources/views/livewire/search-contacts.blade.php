@@ -1,9 +1,9 @@
 <div>
     <!-- Título y botones PRIMERO -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>
+        <!--<h1>
             <i class="bi bi-people-fill"></i> Mis Contactos
-        </h1>
+        </h1>-->
         <div class="btn-group">
             <a href="/contactos/create" class="btn btn-primary">                
                 <i class="bi bi-plus-circle"></i> Nuevo Contacto

@@ -28,17 +28,31 @@ function initializeAuthBridge() {
 // ------------------------------------------------------------------
 // 2. MENÚ HAMBURGUESA
 function initializeMenu() {
-    const hamburgerButton = document.getElementById('hamburger-menu');
-    const menuDropdown = document.getElementById('menu-dropdown');
+    const button = document.getElementById('hamburger-menu');
+    const menu   = document.getElementById('menu-dropdown');
 
-    if (hamburgerButton && menuDropdown) {
-        hamburgerButton.addEventListener('click', function (e) {
-            e.stopPropagation();
-            menuDropdown.classList.toggle('show');
-        });
-
-        document.addEventListener('click', () => menuDropdown.classList.remove('show'));
+    // Si todavía no existen los elementos → reintenta en 100ms (Livewire a veces los pinta después)
+    if (!button || !menu) {
+        setTimeout(initializeMenu, 100);
+        return;
     }
+
+    button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.toggle('show');
+    });
+
+    // Cerrar al hacer click fuera
+    document.addEventListener('click', (e) => {
+        if (!button.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove('show');
+        }
+    });
+
+    // ESC para cerrar
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') menu.classList.remove('show');
+    });
 }
 
 // ------------------------------------------------------------------
@@ -47,7 +61,7 @@ function applyThemeInstantly(theme) {
     theme = theme === 'dark' ? 'dark' : 'light'; // seguridad
     document.documentElement.setAttribute('data-bs-theme', theme);
     const logo = document.querySelector('.header-logo');
-    if (logo) logo.src = `/logo_${theme}.png`;
+    if (logo) logo.src = `logo_${theme}.png`;
 }
 
 // ------------------------------------------------------------------

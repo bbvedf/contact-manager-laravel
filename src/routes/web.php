@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use Livewire\Livewire;
+use App\Http\Controllers\AuthController;
 
 // Ruta de tema
 Route::post('/theme-toggle', function (Illuminate\Http\Request $request) {
@@ -42,4 +43,17 @@ Route::post('/contactos/livewire/update', function () {
 // RUTAS LIVEWIRE normales
 Route::get('/vendor/livewire/livewire.js', [Livewire\Mechanisms\FrontendAssets::class, 'returnJavaScriptAsFile']);
 
+// Ruta de depuración del token JWT
+Route::get('/api/debug-token', function () {
+    $token = request()->query('token') ?? request()->cookie('compras_token');
+    if (!$token) return ['error' => 'no token'];
+    try {
+        $decoded = \Firebase\JWT\JWT::decode($token, new \Firebase\JWT\Key(env('JWT_SECRET','mi_secreto'), 'HS256'));
+        return response()->json((array)$decoded);
+    } catch (Exception $e) {
+        return ['error' => $e->getMessage()];
+    }
+});
 
+// Ruta para logout
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

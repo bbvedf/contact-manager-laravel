@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // AÑADIMOS EL MIDDLEWARE A TODAS LAS RUTAS WEB
+        $middleware->web(append: [
+            \App\Http\Middleware\VerifyComprasToken::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

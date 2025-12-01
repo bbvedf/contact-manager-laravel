@@ -40,6 +40,23 @@
     color: var(--bs-body-color);
 }
 
+.submenu {
+    padding: 0;
+    margin: 0;
+}
+
+.submenu-header {
+    padding: 10px 20px 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--bs-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 /* ===== MENÚ HAMBURGUESA ===== */
 .theme-menu-container {
     position: relative;
@@ -132,4 +149,23 @@
 /* ===== CONTENIDO PRINCIPAL ===== */
 .main-content {
     min-height: calc(100vh - 70px);
+}
+
+
+/* AÑADIR AL FINAL DE integrated.css
+.hamburger-button {
+    border: none;
+    background: transparent;
+}
+
+.hamburger-button:hover span {
+    background-color: var(--bs-primary);
+}
+
+/* En móvil se vea más grande */
+@media (max-width: 576px) {
+    .hamburger-button span {
+        width: 28px;
+        height: 4px;
+    }
 }
