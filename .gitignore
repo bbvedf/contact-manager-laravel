@@ -17,3 +17,5 @@
 /tmp/*
 /src/public/vendor/livewire/*
 /src/scripts/*
+download_avatars.php
+src/database/migrations/2025_11_30_201535_update_contacts_table_structure.php

@@ -1,0 +1,135 @@
+/* ===== HEADER ESTILO COMPRAS ===== */
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    background-color: var(--bs-body-bg);
+    border-bottom: 1px solid var(--bs-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-logo {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.app-title {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--bs-body-color);
+}
+
+/* ===== MENÚ HAMBURGUESA ===== */
+.theme-menu-container {
+    position: relative;
+}
+
+.hamburger-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.hamburger-button span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--bs-body-color);
+    transition: all 0.3s ease;
+}
+
+.hamburger-button:hover span {
+    background-color: var(--bs-primary);
+}
+
+/* ===== DROPDOWN MENU ===== */
+.menu-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    min-width: 200px;
+    z-index: 1001;
+    padding: 8px 0;
+}
+
+.menu-dropdown.show {
+    display: block;
+}
+
+.menu-title {
+    padding: 8px 16px;
+    color: var(--bs-body-color);
+    font-weight: 500;
+}
+
+.menu-divider {
+    height: 1px;
+    background: var(--bs-border-color);
+    margin: 8px 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    color: var(--bs-body-color);
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+    background-color: var(--bs-light);
+}
+
+.menu-theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+/* ===== ESPACIADO HEADER ===== */
+.header-spacer {
+    height: 70px;
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+.main-content {
+    min-height: calc(100vh - 70px);
+}
