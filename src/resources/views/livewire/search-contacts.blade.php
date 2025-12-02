@@ -139,7 +139,7 @@
     
         <!-- Paginación -->
     @if($contacts->hasPages())
-        <div class="mt-4">
+        <div class="mt-4 hidden-pagination-text">
             {{ $contacts->links('livewire::bootstrap') }}
         </div>
     @endif

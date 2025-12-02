@@ -169,3 +169,13 @@
         height: 4px;
     }
 }
+
+/* Ocultar el texto de Livewire en la paginación */
+.hidden-pagination-text .d-none.flex-sm-fill.d-sm-flex.align-items-sm-center.justify-content-sm-between > div:first-child {
+    display: none !important;
+}
+
+/* Forzar que la paginación se quede a la derecha */
+.hidden-pagination-text .d-none.flex-sm-fill.d-sm-flex.align-items-sm-center.justify-content-sm-between {
+    justify-content: flex-end !important;
+}
