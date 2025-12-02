@@ -12,7 +12,7 @@
                 </h4>
             </div>
             <div class="card-body">
-                <form action="/store" method="POST">
+                <form action="/contactos/store" method="POST">
                     @csrf
                     
 <div class="row">
