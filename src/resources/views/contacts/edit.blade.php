@@ -137,7 +137,7 @@
 @push('scripts')
 <script>
 function previewAvatar(event) {
-    console.log('🖼️ Preview avatar function called');
+    //console.log('🖼️ Preview avatar function called');
     const file = event.target.files[0];
     if (!file) return;
 
@@ -159,7 +159,7 @@ function previewAvatar(event) {
         preview.src = e.target.result;
         preview.style.border = '5px solid var(--bs-primary)';
         preview.style.boxShadow = '0 0 10px rgba(var(--bs-primary-rgb), 0.3)';
-        console.log('✅ Avatar preview actualizado');
+        //console.log('✅ Avatar preview actualizado');
     };
     reader.readAsDataURL(file);
 }
