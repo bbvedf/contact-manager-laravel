@@ -132,5 +132,39 @@
         </div>
     </div>
 </div>
+
+
+@push('scripts')
+<script>
+function previewAvatar(event) {
+    console.log('🖼️ Preview avatar function called');
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Validaciones
+    if (!file.type.match('image.*')) {
+        alert('Solo se permiten imágenes');
+        return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+        alert('La imagen no puede pesar más de 2MB');
+        event.target.value = '';
+        return;
+    }
+
+    // Preview
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const preview = document.getElementById('current-avatar');
+        preview.src = e.target.result;
+        preview.style.border = '5px solid var(--bs-primary)';
+        preview.style.boxShadow = '0 0 10px rgba(var(--bs-primary-rgb), 0.3)';
+        console.log('✅ Avatar preview actualizado');
+    };
+    reader.readAsDataURL(file);
+}
+</script>
+@endpush
+
 @endsection
 
