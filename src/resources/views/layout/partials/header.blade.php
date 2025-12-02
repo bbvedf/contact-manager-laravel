@@ -76,56 +76,28 @@
                 </a>
 
                 <script>
-                function forceLogout() {
-                    console.log('Iniciando logout forzado...');
-                    
-                    // 1. Eliminar todas las cookies posibles
-                    const domains = ['', '.ryzenpc.mooo.com', 'ryzenpc.mooo.com'];
-                    const cookies = ['compras_token', 'token', 'auth_token', 'laravel_session', 'XSRF-TOKEN'];
-                    const paths = ['/', '/contactos'];
-                    
-                    domains.forEach(domain => {
-                        cookies.forEach(cookie => {
-                            paths.forEach(path => {
-                                document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=${domain}; path=${path};`;
-                            });
-                        });
-                    });
-                    
-                    // 2. Limpiar localStorage y sessionStorage
-                    localStorage.clear();
-                    sessionStorage.clear();
-                    
-                    // 3. Redirigir a login con parámetros que fuerzan logout
-                    const params = new URLSearchParams({
-                        force_logout: 'true',
-                        from: 'contactos',
-                        t: Date.now(),
-                        redirect_reason: 'logout'
-                    });
-                    
-                    // 4. Forzar recarga sin caché
-                    const loginUrl = `https://ryzenpc.mooo.com/#/login?${params.toString()}`;
-                    console.log('Redirigiendo a:', loginUrl);
-                    
-                    // Agregar parámetro para evitar cache
-                    window.location.href = loginUrl + '&nocache=' + Date.now();
-                    
-                    // 5. Como backup, forzar reload después de 1 segundo
-                    setTimeout(() => {
-                        if (window.location.href.includes('ryzenpc.mooo.com')) {
-                            window.location.reload(true);
-                        }
-                    }, 1000);
-                }
+               function forceLogout() {
+    // EL QUE SÍ FUNCIONABA
+    const domains = ['', '.ryzenpc.mooo.com', 'ryzenpc.mooo.com'];
+    const cookies = ['compras_token', 'token', 'auth_token', 'laravel_session', 'XSRF-TOKEN'];
+    const paths = ['/', '/contactos'];
+    
+    domains.forEach(domain => {
+        cookies.forEach(cookie => {
+            paths.forEach(path => {
+                document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=${domain}; path=${path};`;
+            });
+        });
+    });
+    
+    localStorage.clear();
+    sessionStorage.clear();
+    
+    // Esta parte SÍ funcionaba
+    window.location.href = 'https://ryzenpc.mooo.com/#/login?force_logout=true&t=' + Date.now();
+}
 
-                // También puedes agregar esto para prevenir navegación atrás
-                window.addEventListener('pageshow', function(event) {
-                    if (event.persisted) {
-                        // La página fue cargada desde cache, forzar recarga
-                        window.location.reload();
-                    }
-                });
+
                 </script>
 
             </div>
