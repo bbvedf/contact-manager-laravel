@@ -69,5 +69,40 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<!-- Modal para logout -->
+<div class="modal fade" id="logoutConfirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="bi bi-box-arrow-right text-primary me-2"></i>
+                    Cerrar sesión
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que quieres cerrar sesión?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-danger" onclick="forceLogout()">
+                    <i class="bi bi-box-arrow-right me-1"></i>
+                    Cerrar sesión
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function showLogoutModal() {
+    const modal = new bootstrap.Modal(document.getElementById('logoutConfirmModal'));
+    modal.show();
+}
+</script>
+
+
 </body>
 </html>

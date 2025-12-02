@@ -71,7 +71,7 @@
                 </button>
 
                 <!-- CERRAR SESIÓN -->
-                <a href="javascript:void(0)" onclick="forceLogout()" class="menu-item text-danger">
+                <a href="javascript:void(0)" onclick="showLogoutModal()" class="menu-item text-danger">
                     <i class="bi bi-box-arrow-right"></i> Cerrar sesión
                 </a>
 
