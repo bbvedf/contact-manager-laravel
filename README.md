@@ -93,7 +93,33 @@ contact-manager-laravel/
 MIT
 
 ## 📸 Capturas de pantalla
-|                                    |                                    |                                    |
-|:----------------------------------:|:----------------------------------:|:----------------------------------:|
-| **Tarjetas – Modo oscuro**<br>![Tarjetas oscuro](screenshots/cont01.png) | **Lista – Modo oscuro**<br>![Lista oscuro](screenshots/cont02.png) | **Búsqueda y filtros**<br>![Búsqueda](screenshots/cont03.png) |
-| **Categorías**<br>![Categorías](screenshots/cont04.png) | **Edición con avatar**<br>![Edición avatar](screenshots/cont06.png) | **Exportar a Excel/PDF**<br>![Exportar](screenshots/cont05.png) |
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <strong>Tarjetas – Modo oscuro</strong><br>
+      <img src="screenshots/cont01.png" width="300"><br>      
+    </td>
+    <td align="center" width="33%">
+      <strong>Lista – Modo oscuro</strong><br>
+      <img src="screenshots/cont02.png" width="300"><br>      
+    </td>
+    <td align="center" width="33%">
+      <strong>Búsqueda y filtros</strong><br>
+      <img src="screenshots/cont03.png" width="300"><br>      
+    </td>
+  </tr>
+  <tr style="background-color: #f6f8fa">
+    <td align="center" width="33%">
+      <strong>Categorías</strong><br>
+      <img src="screenshots/cont04.png" width="300"><br>      
+    </td>
+    <td align="center" width="33%">
+      <strong>Edición con avatar</strong><br>
+      <img src="screenshots/cont06.png" width="300"><br>      
+    </td>
+    <td align="center" width="33%">
+      <strong>Exportar a Excel/PDF</strong><br>
+      <img src="screenshots/cont05.png" width="300"><br>      
+    </td>
+  </tr>
+</table>
