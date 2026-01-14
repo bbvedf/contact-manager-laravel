@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     background-color: var(--bs-body-bg);
     border-bottom: 1px solid var(--bs-border-color);
@@ -40,100 +40,27 @@
     color: var(--bs-body-color);
 }
 
-/* ===== SUBMENU ===== */
-.submenu {
-    padding: 0;
-    margin: 0;
-}
-
-.submenu-header {
-    font-family: inherit;
-    font-size: 0.9rem !important;
-    font-weight: 700 !important;      /* ← Bold como "FINANZAS" */
-    color: #fff !important;
+/* Cabeceras de sección */
+.menu-section-header {
+    padding: 10px 12px 5px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-muted);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 8px 12px !important;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    
-    background: linear-gradient(135deg, var(--color-link), var(--color-button-bg-hover));
-    opacity: 0.9;
-    border-radius: 6px;
-    margin: 8px 0 4px 0;
+    letter-spacing: 1px;
+    opacity: 0.8;
     cursor: default;
-    user-select: none;
+    pointer-events: none;
 }
 
-
-/* ===== MENÚ HAMBURGUESA ===== */
-.theme-menu-container {
-    position: relative;
-}
-
-.hamburger-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;    
-}
-
-.hamburger-button span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--bs-body-color);
-    transition: all 0.3s ease;
-}
-
-.hamburger-button:hover span {
-    background-color: var(--bs-primary);
-}
-
-/* ===== DROPDOWN MENU ===== */
-.menu-dropdown {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: calc(100% + 0.5rem);
-    background: var(--bs-body-bg);
-    border: 1px solid var(--bs-border-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    padding: 0.5rem;
-    min-width: 220px !important;
-    z-index: 1001;    
-}
-
-.menu-dropdown.show {
-    display: block;
-}
-
-.menu-title {
+.menu-item,
+.menu-item-header {
     font-family: inherit;
-    font-size: 13px !important;       /* ← 13px como Compras */
-    font-weight: 600 !important;
-    color: #555 !important;           /* ← Gris medio fijo */
-    padding: 8px 16px;
-}
-
-.menu-divider {
-    height: 1px;
-    background: var(--bs-border-color) !important;  /* ← Usar variable */
-    margin: 8px 0 !important;
-}
-
-.menu-item {
-    font-family: inherit; /* Hereda la fuente */
-    font-size: 0.9rem !important;      /* ← Tamaño exacto */
-    font-weight: 400 !important;       /* ← Peso normal (no bold) */
-    color: var(--bs-body-color) !important; /* ← Usar variable Bootstrap */
-    padding: 10px 16px !important;
-    gap: 10px !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    color: var(--bs-body-color) !important;
+    padding: 0.75rem 1rem !important;
+    gap: 0.75rem !important;
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -143,7 +70,109 @@
     width: 100%;
     text-align: left;
     transition: background-color 0.2s ease;
-    line-height: 1.5 !important;      /* ← Asegurar line-height */
+    border-radius: 4px;
+}
+
+.menu-item-header {
+    flex: 1;
+}
+
+.menu-item:hover,
+.menu-item-header:hover {
+    background-color: var(--bs-secondary-bg) !important;
+    color: var(--bs-primary) !important;
+}
+
+.menu-item i,
+.menu-item-header i {
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.logout-item:hover {
+    background: rgba(220, 53, 69, 0.1) !important;
+    color: #dc3545 !important;
+}
+
+.menu-divider {
+    height: 1px;
+    background-color: var(--bs-border-color);
+    margin: 8px 12px;
+}
+
+/* Submenús Colapsables */
+.menu-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.submenu-toggle {
+    background: none;
+    border: none;
+    color: var(--bs-body-color);
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.submenu-toggle:hover {
+    opacity: 1;
+    color: var(--bs-primary);
+}
+
+.submenu-content {
+    padding-left: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.menu-sub-item {
+    font-size: 0.85rem !important;
+    padding: 8px 16px !important;
+    opacity: 0.8;
+}
+
+.menu-sub-item:hover {
+    opacity: 1;
+    background-color: var(--bs-secondary-bg) !important;
+    color: var(--bs-primary) !important;
+}
+
+/* ===== DROPDOWN MENU ===== */
+.menu-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 1rem);
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem;
+    min-width: 260px !important;
+    z-index: 2000;
+    animation: fadeInMenu 0.2s ease-out;
+}
+
+.menu-dropdown.active {
+    display: block !important;
+}
+
+@keyframes fadeInMenu {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .menu-item:hover {
@@ -173,8 +202,10 @@
     --color-list-item: #ffffff;
     --color-list-item-hover: #f8f9fa;
     --color-list-border: #dee2e6;
-    --color-link: #0d6efd;          /* Azul Bootstrap */
-    --color-button-bg-hover: #0b5ed7; /* Azul más oscuro */
+    --color-link: #0d6efd;
+    /* Azul Bootstrap */
+    --color-button-bg-hover: #0b5ed7;
+    /* Azul más oscuro */
 }
 
 /* Tema oscuro */
@@ -190,8 +221,10 @@
     --color-list-item: #2b3035;
     --color-list-item-hover: #32383e;
     --color-list-border: #373b3e;
-    --color-link: #ffc107;          /* Amarillo */
-    --color-button-bg-hover: #e0a800; /* Amarillo oscuro */
+    --color-link: #ffc107;
+    /* Amarillo */
+    --color-button-bg-hover: #e0a800;
+    /* Amarillo oscuro */
 }
 
 /* ===== ESTILOS GLOBALES ===== */
@@ -224,13 +257,15 @@ body {
     background-color: var(--color-list-item-hover);
 }
 
-.form-control, .form-select {
+.form-control,
+.form-select {
     background-color: var(--color-input-bg);
     border-color: var(--color-input-border);
     color: var(--color-input-text);
 }
 
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
     background-color: var(--color-input-bg);
     border-color: #6366f1;
     color: var(--color-input-text);
@@ -259,7 +294,7 @@ body {
 }
 
 /* ===== PAGINACIÓN ===== */
-.hidden-pagination-text .d-none.flex-sm-fill.d-sm-flex.align-items-sm-center.justify-content-sm-between > div:first-child {
+.hidden-pagination-text .d-none.flex-sm-fill.d-sm-flex.align-items-sm-center.justify-content-sm-between>div:first-child {
     display: none !important;
 }
 
@@ -353,15 +388,18 @@ body {
 }
 
 [data-bs-theme="dark"] .menu-title {
-    color: #999 !important;           /* ← Gris claro en oscuro */
+    color: #999 !important;
+    /* ← Gris claro en oscuro */
 }
 
 [data-bs-theme="dark"] .menu-item {
-    color: #e0e0e0 !important;  /* ← Blanco/gris claro como Compras */
+    color: #e0e0e0 !important;
+    /* ← Blanco/gris claro como Compras */
 }
 
 [data-bs-theme="dark"] .menu-item:hover {
-    background-color: #2c2c2c !important;  /* ← Gris oscuro como Compras */
+    background-color: #2c2c2c !important;
+    /* ← Gris oscuro como Compras */
 }
 
 
@@ -372,7 +410,7 @@ body {
 
 .contact-avatar:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .contact-avatar-small {
@@ -416,4 +454,44 @@ body {
         width: 28px;
         height: 4px;
     }
+}
+
+/* ===== MENU HAMBURGUESA ===== */
+.theme-menu-container {
+    position: relative;
+}
+
+.hamburger-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+}
+
+.hamburger-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-bs-theme="dark"] .hamburger-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hamburger-button span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: var(--bs-body-color);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger-button:hover span {
+    background-color: var(--bs-primary);
 }
